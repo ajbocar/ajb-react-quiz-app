@@ -1,18 +1,23 @@
-import { useState } from "react";
+import { Routes, Route } from "react-router-dom";
+import Layout from "./layout/Layout";
+import QuizPage from "./pages/QuizPage";
+import QuizStartPage from "./pages/QuizStartPage";
+import QuizEndPage from "./pages/QuizEndPage";
+import NotFoundPage from "./pages/NotFoundPage";
 
 function App() {
-  const [count, setCount] = useState(0);
-
-  const addCount = () => {
-    setCount(count+1);
-  };
-
   return (
-    <>
-      <h1>Vite + React + Pico</h1>
-      <h4>count is {count}</h4>
-      <button onClick={addCount}>+1</button>
-    </>
+    <div>
+      <h1>React Quiz App</h1>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<QuizStartPage />} />
+          <Route path="quiz" element={<QuizPage />} />
+          <Route path="quiz-end" element={<QuizEndPage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Route>
+      </Routes>
+    </div>
   );
 }
 
